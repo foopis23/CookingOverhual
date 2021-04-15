@@ -37,7 +37,7 @@ public class CookingFire extends Block implements BlockEntityProvider {
                     blockEntity.setStack(i, player.getStackInHand(hand).copy());
                     player.getStackInHand(hand).setCount(0);
 
-                    return ActionResult.SUCCESS;
+                    return ActionResult.CONSUME;
                 }
             }
 

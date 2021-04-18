@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "cooking-overhaul:block/cooking_fire" }
+  }
+}

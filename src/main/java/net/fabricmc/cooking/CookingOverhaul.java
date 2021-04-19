@@ -12,11 +12,14 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.block.CampfireBlock;
 
 public class CookingOverhaul implements ModInitializer {
 	public static final String MOD_ID = "cooking-overhaul";
 
-	public static final Block COOKING_FIRE = new CookingFire(FabricBlockSettings.of(Material.WOOD));
+	public static final FabricBlockSettings COOKING_FIRE_SETTINGS = FabricBlockSettings.of(Material.WOOD).nonOpaque();
+	public static final Block COOKING_FIRE = new CookingFire(COOKING_FIRE_SETTINGS);
+
 	public static BlockEntityType<CookingFireInventory> COOKING_FIRE_ENTITY;
 
 	@Override

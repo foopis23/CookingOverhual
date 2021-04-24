@@ -6,6 +6,8 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.FlintAndSteelItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ItemScatterer;
@@ -26,30 +28,40 @@ public class CookingFire extends Block implements BlockEntityProvider {
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-
-        if (world.isClient) return ActionResult.PASS;
         if (hand == Hand.OFF_HAND) return ActionResult.PASS;
 
-        Inventory blockEntity = (Inventory) world.getBlockEntity(pos);
+        CookingFireInventory blockEntity = (CookingFireInventory) world.getBlockEntity(pos);
         assert blockEntity != null;
 
-        if (!player.getStackInHand(hand).isEmpty()) {
+        ItemStack itemStack = player.getStackInHand(hand);
+
+        if (!itemStack.isEmpty()) {
+            if (itemStack.getItem() instanceof FlintAndSteelItem) {
+                if (!world.isClient) {
+                    System.out.println("LIT FIRE");
+                    blockEntity.setLit(true);
+                }
+                return ActionResult.SUCCESS;
+            }
 
             for (int i = 0; i < blockEntity.size(); i++) {
                 if (blockEntity.getStack(i).isEmpty()) {
-                    blockEntity.setStack(i, player.getStackInHand(hand).copy());
-                    player.getStackInHand(hand).setCount(0);
-
+                    if (!world.isClient) {
+                        blockEntity.setStack(i, itemStack.copy());
+                        itemStack.setCount(0);
+                    }
                     return ActionResult.CONSUME;
                 }
             }
 
         }else{
-
             for (int i = blockEntity.size(); i>0; i--) {
                 if (!blockEntity.getStack(i-1).isEmpty()) {
-                    player.inventory.offerOrDrop(world, blockEntity.getStack(i-1));
-                    blockEntity.removeStack(i-1);
+                    if (!world.isClient) {
+                        player.inventory.offerOrDrop(world, blockEntity.getStack(i-1));
+                        blockEntity.removeStack(i-1);
+                    }
+
                     return ActionResult.SUCCESS;
                 }
             }

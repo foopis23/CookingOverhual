@@ -50,9 +50,7 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
-        return null;
-    }
+    public abstract RecipeSerializer<?> getSerializer();
 
     @Override
     public RecipeType<?> getType() {

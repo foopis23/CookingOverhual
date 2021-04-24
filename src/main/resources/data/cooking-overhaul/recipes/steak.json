@@ -1,0 +1,22 @@
+{
+  "type": "",
+  "group": "",
+  "ingredients": {
+    "a": {
+      "item": "",
+      "tag": ""
+    }
+  },
+  "ratios": {
+    "a": {
+      "ratio": 0.5,
+      "minRatio": 0.1,
+      "maxRatio": 0.5
+    }
+  },
+  "result": {
+    "item": "",
+    "tag": ""
+  },
+  "cookingTime": 100
+}

@@ -8,10 +8,11 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.recipe.RecipeManager;
 import net.minecraft.recipe.RecipeType;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.collection.DefaultedList;
+import net.minecraft.util.math.BlockPos;
 
 public class CookingFireInventory extends BlockEntity implements ImplementedInventory, Tickable {
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(5, ItemStack.EMPTY);
@@ -61,22 +62,36 @@ public class CookingFireInventory extends BlockEntity implements ImplementedInve
     @Override
     public void tick() {
         if (!this.world.isClient) {
-            for (int i=0; i<getItems().size(); i++) {
-                ItemStack stack = getStack(i);
-                Inventory inventory = new SimpleInventory(new ItemStack[]{stack});
-                if (cookTimes[i] >= totalCookTime) {
+            if (lit) {
+                for (int i=0; i<getItems().size(); i++) {
+                    ItemStack stack = getStack(i);
+                    Inventory inventory = new SimpleInventory(new ItemStack[]{stack});
+                    if (cookTimes[i] >= totalCookTime) {
 
-                    // TODO: Replace this with cooking fire recipe manager
-                    ItemStack itemStack2 = (ItemStack)this.world.getRecipeManager().getFirstMatch(RecipeType.CAMPFIRE_COOKING, inventory, this.world).map((campfireCookingRecipe) -> {
-                        return campfireCookingRecipe.craft(inventory);
-                    }).orElse(stack);
+                        // TODO: Replace this with cooking fire recipe manager
+                        ItemStack itemStack2 = (ItemStack)this.world.getRecipeManager().getFirstMatch(RecipeType.CAMPFIRE_COOKING, inventory, this.world).map((campfireCookingRecipe) -> {
+                            return campfireCookingRecipe.craft(inventory);
+                        }).orElse(stack);
 
-                    setStack(i, itemStack2);
-                    cookTimes[i] = 0;
-                }else if (getStack(i) != ItemStack.EMPTY) {
-                    cookTimes[i]++;
+                        BlockPos blockPos = this.getPos();
+                        ItemScatterer.spawn(this.world, (double)blockPos.getX(), (double)blockPos.getY(), (double)blockPos.getZ(), itemStack2);
+                        setStack(i, ItemStack.EMPTY);
+                        cookTimes[i] = 0;
+                    }else if (getStack(i) != ItemStack.EMPTY) {
+                        cookTimes[i]++;
+                    }
+                }
+
+                if (isEmpty()) {
+                    lit = false;
+                    markDirty();
                 }
             }
         }
+    }
+
+    public void setLit(boolean lit) {
+        this.lit = lit;
+        markDirty();
     }
 }

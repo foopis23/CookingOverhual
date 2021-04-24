@@ -3,6 +3,7 @@ package net.fabricmc.cooking.recipe;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -27,7 +28,7 @@ public class CookingFireRatioRecipe extends AbstractCookingFireRecipe {
             for (int j=0; j < input.length; j++) {
                 Ingredient ingredient = input[j];
 
-                if (input[j].test(item)) {
+                if (ingredient.test(item)) {
                     ingredientCounts[j]++;
                     foundIngredient = true;
                     break;
@@ -49,5 +50,10 @@ public class CookingFireRatioRecipe extends AbstractCookingFireRecipe {
         }
 
         return true;
+    }
+
+    @Override
+    public RecipeSerializer<?> getSerializer() {
+        return null;
     }
 }

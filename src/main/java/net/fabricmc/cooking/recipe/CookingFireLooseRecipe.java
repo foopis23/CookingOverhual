@@ -3,6 +3,7 @@ package net.fabricmc.cooking.recipe;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
@@ -49,5 +50,10 @@ public class CookingFireLooseRecipe extends AbstractCookingFireRecipe {
         }
 
         return used.size() == 0;
+    }
+
+    @Override
+    public RecipeSerializer<?> getSerializer() {
+        return null;
     }
 }

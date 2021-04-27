@@ -3,9 +3,10 @@ package net.fabricmc.cooking;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.cooking.block.CookingFire;
 import net.fabricmc.cooking.inventory.CookingFireInventory;
-import net.fabricmc.cooking.recipe.AbstractCookingFireRecipe;
+import net.fabricmc.cooking.recipe.CookingFireLooseRatioRecipe;
 import net.fabricmc.cooking.recipe.CookingFireLooseRecipe;
 import net.fabricmc.cooking.recipe.CookingFireMajorityRecipe;
+import net.fabricmc.cooking.recipe.serializer.CookingFireLooseRatioSerializer;
 import net.fabricmc.cooking.recipe.serializer.CookingFireLooseSerializer;
 import net.fabricmc.cooking.recipe.serializer.CookingFireMajoritySerializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -37,16 +38,23 @@ public class CookingOverhaul implements ModInitializer {
 		COOKING_FIRE_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cooking_fire",
 				BlockEntityType.Builder.create(CookingFireInventory::new, COOKING_FIRE).build(null));
 
+		// Loose Ratio Type
+		Registry.register(Registry.RECIPE_SERIALIZER, CookingFireLooseRatioSerializer.ID,
+				CookingFireLooseRatioSerializer.INSTANCE);
+		Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, CookingFireLooseRatioRecipe.Type.ID),
+				CookingFireLooseRatioRecipe.Type.INSTANCE);
+
+		// Loose Recipe Type
+		Registry.register(Registry.RECIPE_SERIALIZER, CookingFireLooseSerializer.ID,
+				CookingFireLooseSerializer.INSTANCE);
+		Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, CookingFireLooseRecipe.Type.ID),
+				CookingFireLooseRecipe.Type.INSTANCE);
+
 		// Majority Recipe Type
 		Registry.register(Registry.RECIPE_SERIALIZER, CookingFireMajoritySerializer.ID,
 				CookingFireMajoritySerializer.INSTANCE);
 		Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, CookingFireMajorityRecipe.Type.ID),
 				CookingFireMajorityRecipe.Type.INSTANCE);
-
-		Registry.register(Registry.RECIPE_SERIALIZER, CookingFireLooseSerializer.ID,
-				CookingFireLooseSerializer.INSTANCE);
-		Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, CookingFireLooseRecipe.Type.ID),
-				CookingFireLooseRecipe.Type.INSTANCE);
 
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "cooking_fire"), COOKING_FIRE);
 		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "cooking_fire"),

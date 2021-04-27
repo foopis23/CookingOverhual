@@ -17,6 +17,7 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
     protected final Ingredient inputC;
     protected final Ingredient inputD;
     protected final Ingredient inputE;
+    protected final Ingredient[] inputs;
     protected final ItemStack output;
     protected final int cookTime;
     protected final Identifier id;
@@ -27,6 +28,7 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
         this.inputC = null;
         this.inputD = null;
         this.inputE = null;
+        inputs = new Ingredient[]{inputA};
         this.output = output;
         this.cookTime = cookTime;
         this.id = id;
@@ -38,6 +40,7 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
         this.inputC = null;
         this.inputD = null;
         this.inputE = null;
+        inputs = new Ingredient[]{inputA, inputB};
         this.output = output;
         this.cookTime = cookTime;
         this.id = id;
@@ -49,6 +52,7 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
         this.inputC = inputC;
         this.inputD = null;
         this.inputE = null;
+        inputs = new Ingredient[]{inputA, inputB, inputC};
         this.output = output;
         this.cookTime = cookTime;
         this.id = id;
@@ -60,6 +64,7 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
         this.inputC = inputC;
         this.inputD = inputD;
         this.inputE = null;
+        inputs = new Ingredient[]{inputA, inputB, inputC, inputD};
         this.output = output;
         this.cookTime = cookTime;
         this.id = id;
@@ -71,6 +76,20 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
         this.inputC = inputC;
         this.inputD = inputD;
         this.inputE = inputE;
+        inputs = new Ingredient[]{inputA, inputB, inputC, inputD, inputE};
+        this.output = output;
+        this.cookTime = cookTime;
+        this.id = id;
+    }
+
+    protected AbstractCookingFireRecipe(Ingredient[] inputs, ItemStack output, int cookTime, Identifier id) {
+        inputA = (inputs.length > 0)? inputs[0] : null;
+        inputB = (inputs.length > 1)? inputs[1] : null;
+        inputC = (inputs.length > 2)? inputs[2] : null;
+        inputD = (inputs.length > 3)? inputs[3] : null;
+        inputE = (inputs.length > 4)? inputs[4] : null;
+
+        this.inputs = inputs;
         this.output = output;
         this.cookTime = cookTime;
         this.id = id;

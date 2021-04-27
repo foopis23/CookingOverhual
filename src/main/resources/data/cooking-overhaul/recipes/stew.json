@@ -1,0 +1,31 @@
+{
+  "type": "cooking-overhaul:recipe_loose_ratio",
+  "input": [
+    {
+      "item": "minecraft:red_mushroom"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "ratio": [
+    {
+      "min": 0.2,
+      "max": 0.6
+    },
+    {
+      "min": 0.2,
+      "max": 0.6
+    },
+    {
+      "min": 0.2,
+      "max": 0.35
+    }
+  ],
+  "maxErrorRatio": 0.25,
+  "output": "minecraft:mushroom_stew",
+  "cookTime": 100
+}

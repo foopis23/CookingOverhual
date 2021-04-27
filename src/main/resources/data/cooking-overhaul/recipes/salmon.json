@@ -1,0 +1,8 @@
+{
+  "type": "cooking-overhaul:recipe_majority",
+  "input": {
+    "item": "minecraft:salmon"
+  },
+  "output": "minecraft:cooked_salmon",
+  "cookTime": 100
+}

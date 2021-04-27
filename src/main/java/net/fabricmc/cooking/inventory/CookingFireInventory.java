@@ -2,23 +2,16 @@ package net.fabricmc.cooking.inventory;
 
 import net.fabricmc.cooking.CookingOverhaul;
 import net.fabricmc.cooking.recipe.AbstractCookingFireRecipe;
-import net.fabricmc.cooking.recipe.CookingFireMajorityRecipe;
 import net.fabricmc.cooking.recipe.manager.CookingFireRecipeManager;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.Tickable;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-
-import java.util.Optional;
 
 public class CookingFireInventory extends BlockEntity implements ImplementedInventory, Tickable {
     private final DefaultedList<ItemStack> items = DefaultedList.ofSize(5, ItemStack.EMPTY);

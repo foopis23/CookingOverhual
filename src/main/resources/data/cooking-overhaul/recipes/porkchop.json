@@ -1,0 +1,8 @@
+{
+  "type": "cooking-overhaul:recipe_majority",
+  "input": {
+    "item": "minecraft:porkchop"
+  },
+  "output": "minecraft:cooked_porkchop",
+  "cookTime": 100
+}

@@ -1,0 +1,8 @@
+{
+  "type": "cooking-overhaul:recipe_majority",
+  "input": {
+    "item": "minecraft:cod"
+  },
+  "output": "minecraft:cooked_cod",
+  "cookTime": 100
+}

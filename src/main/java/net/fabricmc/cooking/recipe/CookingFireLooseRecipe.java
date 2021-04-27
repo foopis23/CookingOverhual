@@ -1,5 +1,6 @@
 package net.fabricmc.cooking.recipe;
 
+import net.fabricmc.cooking.recipe.serializer.CookingFireLooseSerializer;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -73,11 +74,11 @@ public class CookingFireLooseRecipe extends AbstractCookingFireRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return null;
+        return CookingFireLooseSerializer.INSTANCE;
     }
 
     @Override
     public RecipeType<?> getType() {
-        return null;
+        return Type.INSTANCE;
     }
 }

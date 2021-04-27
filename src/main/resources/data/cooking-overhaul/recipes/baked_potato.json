@@ -1,0 +1,8 @@
+{
+  "type": "cooking-overhaul:recipe_majority",
+  "input": {
+    "item": "minecraft:potato"
+  },
+  "output": "minecraft:baked_potato",
+  "cookTime": 100
+}

@@ -5,5 +5,5 @@ import com.google.gson.JsonObject;
 public class CookingFireMajorityJsonFormat {
     public JsonObject input;
     public String output;
-    public int cookingTime;
+    public int cookTime;
 }

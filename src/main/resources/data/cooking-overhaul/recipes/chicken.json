@@ -1,0 +1,8 @@
+{
+  "type": "cooking-overhaul:recipe_majority",
+  "input": {
+    "item": "minecraft:chicken"
+  },
+  "output": "minecraft:cooked_chicken",
+  "cookTime": 100
+}

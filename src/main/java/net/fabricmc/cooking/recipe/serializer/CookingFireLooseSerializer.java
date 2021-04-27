@@ -78,6 +78,7 @@ public class CookingFireLooseSerializer implements RecipeSerializer<CookingFireL
         buf.writeItemStack(recipe.getOutput());
         buf.writeInt(recipe.getCookTime());
         recipe.getInputA().write(buf);
+
         if (recipe.getInputB() != null)
             recipe.getInputB().write(buf);
 

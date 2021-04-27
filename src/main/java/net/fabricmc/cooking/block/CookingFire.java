@@ -47,8 +47,10 @@ public class CookingFire extends Block implements BlockEntityProvider {
             for (int i = 0; i < blockEntity.size(); i++) {
                 if (blockEntity.getStack(i).isEmpty()) {
                     if (!world.isClient) {
-                        blockEntity.setStack(i, itemStack.copy());
-                        itemStack.setCount(0);
+                        ItemStack itemStack2 = itemStack.copy();
+                        itemStack2.setCount(1);
+                        blockEntity.setStack(i, itemStack2);
+                        itemStack.decrement(1);
                     }
                     return ActionResult.CONSUME;
                 }

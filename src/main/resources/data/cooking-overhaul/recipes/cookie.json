@@ -1,0 +1,17 @@
+{
+  "type": "cooking-overhaul:recipe_ratio",
+  "input": [
+    {
+      "item": "minecraft:cocoa_beans"
+    },
+    {
+      "item": "minecraft:wheat"
+    }
+  ],
+  "ratio": [
+    0.33333,
+    0.66666
+  ],
+  "output": "minecraft:cookie",
+  "cookTime": 100
+}

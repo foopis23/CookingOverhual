@@ -27,8 +27,8 @@ public class CookingFireMajoritySerializer implements RecipeSerializer<CookingFi
             throw new JsonSyntaxException("A require attribute is missing!");
 
         // Default value most be greater than zero
-        if (recipeJson.cookingTime < 1)
-            recipeJson.cookingTime = 1;
+        if (recipeJson.cookTime < 1)
+            recipeJson.cookTime = 1;
 
         // Get output item from id, if no item exists throw error
         Item outputItem = Registry.ITEM.getOrEmpty(new Identifier(recipeJson.output)).orElseThrow(() ->
@@ -39,7 +39,7 @@ public class CookingFireMajoritySerializer implements RecipeSerializer<CookingFi
         ItemStack output = new ItemStack(outputItem, 1);
 
         // Create Recipe
-        return new CookingFireMajorityRecipe(input, output, recipeJson.cookingTime, id);
+        return new CookingFireMajorityRecipe(input, output, recipeJson.cookTime, id);
     }
 
     @Override

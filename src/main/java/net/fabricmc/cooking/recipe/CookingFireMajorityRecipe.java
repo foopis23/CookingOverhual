@@ -1,6 +1,5 @@
 package net.fabricmc.cooking.recipe;
 
-import net.fabricmc.cooking.CookingOverhaul;
 import net.fabricmc.cooking.recipe.serializer.CookingFireMajoritySerializer;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -12,7 +11,7 @@ import net.minecraft.world.World;
 
 public class CookingFireMajorityRecipe extends AbstractCookingFireRecipe {
 
-    public static class Type implements RecipeType<CookingFireMajorityRecipe> {
+    public static class Type implements RecipeType<AbstractCookingFireRecipe> {
         // Define ExampleRecipe.Type as a singleton by making its constructor private and exposing an instance.
         private Type() {}
         public static final Type INSTANCE = new Type();

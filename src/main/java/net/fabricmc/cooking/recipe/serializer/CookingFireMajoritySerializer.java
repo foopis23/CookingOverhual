@@ -14,9 +14,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class CookingFireMajoritySerializer implements RecipeSerializer<CookingFireMajorityRecipe> {
-    private CookingFireMajoritySerializer() {
-    }
-
     public static final CookingFireMajoritySerializer INSTANCE = new CookingFireMajoritySerializer();
     public static final Identifier ID = new Identifier("cooking-overhaul:recipe_majority");
 

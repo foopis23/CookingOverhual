@@ -4,7 +4,9 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.cooking.block.CookingFire;
 import net.fabricmc.cooking.inventory.CookingFireInventory;
 import net.fabricmc.cooking.recipe.AbstractCookingFireRecipe;
+import net.fabricmc.cooking.recipe.CookingFireLooseRecipe;
 import net.fabricmc.cooking.recipe.CookingFireMajorityRecipe;
+import net.fabricmc.cooking.recipe.serializer.CookingFireLooseSerializer;
 import net.fabricmc.cooking.recipe.serializer.CookingFireMajoritySerializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -13,11 +15,6 @@ import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.recipe.AbstractCookingRecipe;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -45,6 +42,11 @@ public class CookingOverhaul implements ModInitializer {
 				CookingFireMajoritySerializer.INSTANCE);
 		Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, CookingFireMajorityRecipe.Type.ID),
 				CookingFireMajorityRecipe.Type.INSTANCE);
+
+		Registry.register(Registry.RECIPE_SERIALIZER, CookingFireLooseSerializer.ID,
+				CookingFireLooseSerializer.INSTANCE);
+		Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, CookingFireLooseRecipe.Type.ID),
+				CookingFireLooseRecipe.Type.INSTANCE);
 
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "cooking_fire"), COOKING_FIRE);
 		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "cooking_fire"),

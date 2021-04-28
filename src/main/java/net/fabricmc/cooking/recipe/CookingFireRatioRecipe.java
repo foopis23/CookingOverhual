@@ -1,5 +1,6 @@
 package net.fabricmc.cooking.recipe;
 
+import net.fabricmc.cooking.recipe.serializer.CookingFireRatioSerializer;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -9,7 +10,17 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 public class CookingFireRatioRecipe extends AbstractCookingFireRecipe {
-    public final float[] InputRatio;
+
+    public static class Type implements RecipeType<AbstractCookingFireRecipe> {
+        // Define ExampleRecipe.Type as a singleton by making its constructor private and exposing an instance.
+        private Type() {}
+        public static final CookingFireRatioRecipe.Type INSTANCE = new CookingFireRatioRecipe.Type();
+
+        // This will be needed in step 4
+        public static final String ID = "cooking_fire_ratio";
+    }
+
+    protected final float[] InputRatio;
 
     public CookingFireRatioRecipe(Ingredient inputA, Ingredient inputB, Ingredient inputC, Ingredient inputD, Ingredient inputE, ItemStack output, int cookTime, Identifier id, float[] inputRatio) {
         super(inputA, inputB, inputC, inputD, inputE, output, cookTime, id);
@@ -19,6 +30,12 @@ public class CookingFireRatioRecipe extends AbstractCookingFireRecipe {
     public CookingFireRatioRecipe(Ingredient[] inputs, ItemStack output, int cookTime, Identifier id, float[] inputRatio) {
         super(inputs, output, cookTime, id);
         InputRatio = inputRatio;
+    }
+
+    public float getInputRatio(int i) {
+        if (i < 0 || i > InputRatio.length) return -1;
+
+        return InputRatio[i];
     }
 
     @Override
@@ -61,11 +78,11 @@ public class CookingFireRatioRecipe extends AbstractCookingFireRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return null;
+        return CookingFireRatioSerializer.INSTANCE;
     }
 
     @Override
     public RecipeType<?> getType() {
-        return null;
+    return Type.INSTANCE;
     }
 }

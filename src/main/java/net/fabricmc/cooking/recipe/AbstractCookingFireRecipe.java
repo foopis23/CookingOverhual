@@ -18,11 +18,11 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
     protected final Ingredient inputD;
     protected final Ingredient inputE;
     protected final Ingredient[] inputs;
-    protected final ItemStack output;
+    protected final ItemStack[] output;
     protected final int cookTime;
     protected final Identifier id;
 
-    protected AbstractCookingFireRecipe(Ingredient inputA, ItemStack output, int cookTime, Identifier id) {
+    protected AbstractCookingFireRecipe(Ingredient inputA, ItemStack[] output, int cookTime, Identifier id) {
         this.inputA = inputA;
         this.inputB = null;
         this.inputC = null;
@@ -34,7 +34,7 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
         this.id = id;
     }
 
-    protected AbstractCookingFireRecipe(Ingredient inputA, Ingredient inputB, ItemStack output, int cookTime, Identifier id) {
+    protected AbstractCookingFireRecipe(Ingredient inputA, Ingredient inputB, ItemStack[] output, int cookTime, Identifier id) {
         this.inputA = inputA;
         this.inputB = inputB;
         this.inputC = null;
@@ -46,7 +46,7 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
         this.id = id;
     }
 
-    protected AbstractCookingFireRecipe(Ingredient inputA, Ingredient inputB, Ingredient inputC, ItemStack output, int cookTime, Identifier id) {
+    protected AbstractCookingFireRecipe(Ingredient inputA, Ingredient inputB, Ingredient inputC, ItemStack[] output, int cookTime, Identifier id) {
         this.inputA = inputA;
         this.inputB = inputB;
         this.inputC = inputC;
@@ -58,7 +58,7 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
         this.id = id;
     }
 
-    protected AbstractCookingFireRecipe(Ingredient inputA, Ingredient inputB, Ingredient inputC, Ingredient inputD, ItemStack output, int cookTime, Identifier id) {
+    protected AbstractCookingFireRecipe(Ingredient inputA, Ingredient inputB, Ingredient inputC, Ingredient inputD, ItemStack[] output, int cookTime, Identifier id) {
         this.inputA = inputA;
         this.inputB = inputB;
         this.inputC = inputC;
@@ -70,7 +70,7 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
         this.id = id;
     }
 
-    protected AbstractCookingFireRecipe(Ingredient inputA, Ingredient inputB, Ingredient inputC, Ingredient inputD, Ingredient inputE, ItemStack output, int cookTime, Identifier id) {
+    protected AbstractCookingFireRecipe(Ingredient inputA, Ingredient inputB, Ingredient inputC, Ingredient inputD, Ingredient inputE, ItemStack[] output, int cookTime, Identifier id) {
         this.inputA = inputA;
         this.inputB = inputB;
         this.inputC = inputC;
@@ -82,7 +82,7 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
         this.id = id;
     }
 
-    protected AbstractCookingFireRecipe(Ingredient[] inputs, ItemStack output, int cookTime, Identifier id) {
+    protected AbstractCookingFireRecipe(Ingredient[] inputs, ItemStack[] output, int cookTime, Identifier id) {
         inputA = (inputs.length > 0)? inputs[0] : null;
         inputB = (inputs.length > 1)? inputs[1] : null;
         inputC = (inputs.length > 2)? inputs[2] : null;
@@ -124,8 +124,18 @@ public abstract class AbstractCookingFireRecipe implements Recipe<Inventory> {
 
     @Override
     public ItemStack craft(Inventory inv) {
+        int ingredientCount = 0;
+
+        for (int i=0; i < inv.size(); i++) {
+            if (!inv.getStack(i).isEmpty())
+                ingredientCount++;
+        }
+
+        if (ingredientCount == 0)
+            return ItemStack.EMPTY;
+
         inv.clear();
-        return output.copy();
+        return output[ingredientCount].copy();
     }
 
     @Override

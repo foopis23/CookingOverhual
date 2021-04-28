@@ -6,9 +6,11 @@ import net.fabricmc.cooking.inventory.CookingFireInventory;
 import net.fabricmc.cooking.recipe.CookingFireLooseRatioRecipe;
 import net.fabricmc.cooking.recipe.CookingFireLooseRecipe;
 import net.fabricmc.cooking.recipe.CookingFireMajorityRecipe;
+import net.fabricmc.cooking.recipe.CookingFireRatioRecipe;
 import net.fabricmc.cooking.recipe.serializer.CookingFireLooseRatioSerializer;
 import net.fabricmc.cooking.recipe.serializer.CookingFireLooseSerializer;
 import net.fabricmc.cooking.recipe.serializer.CookingFireMajoritySerializer;
+import net.fabricmc.cooking.recipe.serializer.CookingFireRatioSerializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -37,6 +39,12 @@ public class CookingOverhaul implements ModInitializer {
 	public void onInitialize() {
 		COOKING_FIRE_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE, MOD_ID + ":cooking_fire",
 				BlockEntityType.Builder.create(CookingFireInventory::new, COOKING_FIRE).build(null));
+
+		// Ratio Type
+		Registry.register(Registry.RECIPE_SERIALIZER, CookingFireRatioSerializer.ID,
+				CookingFireRatioSerializer.INSTANCE);
+		Registry.register(Registry.RECIPE_TYPE, new Identifier(MOD_ID, CookingFireRatioRecipe.Type.ID),
+				CookingFireRatioRecipe.Type.INSTANCE);
 
 		// Loose Ratio Type
 		Registry.register(Registry.RECIPE_SERIALIZER, CookingFireLooseRatioSerializer.ID,

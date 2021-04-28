@@ -38,7 +38,6 @@ public class CookingFire extends Block implements BlockEntityProvider {
         if (!itemStack.isEmpty()) {
             if (itemStack.getItem() instanceof FlintAndSteelItem) {
                 if (!world.isClient) {
-                    System.out.println("LIT FIRE");
                     blockEntity.setLit(true);
                 }
                 return ActionResult.SUCCESS;

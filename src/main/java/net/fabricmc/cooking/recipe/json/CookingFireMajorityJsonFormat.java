@@ -2,8 +2,6 @@ package net.fabricmc.cooking.recipe.json;
 
 import com.google.gson.JsonObject;
 
-public class CookingFireMajorityJsonFormat {
+public class CookingFireMajorityJsonFormat extends CookingFireAbstractJsonFormat {
     public JsonObject input;
-    public String output;
-    public int cookTime;
 }

@@ -1,9 +1,6 @@
 package net.fabricmc.cooking.recipe.manager;
 
-import net.fabricmc.cooking.recipe.AbstractCookingFireRecipe;
-import net.fabricmc.cooking.recipe.CookingFireLooseRatioRecipe;
-import net.fabricmc.cooking.recipe.CookingFireLooseRecipe;
-import net.fabricmc.cooking.recipe.CookingFireMajorityRecipe;
+import net.fabricmc.cooking.recipe.*;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.world.World;
 
@@ -13,6 +10,13 @@ public class CookingFireRecipeManager {
     public static AbstractCookingFireRecipe getFirstMatch(Inventory inventory, World world) {
         Optional<AbstractCookingFireRecipe> match;
 
+        // Ratio Recipe
+        match = world.getRecipeManager().getFirstMatch(CookingFireRatioRecipe.Type.INSTANCE, inventory, world);
+        if (match.isPresent()) {
+            return match.get();
+        }
+
+        // Loose Ratio Recipe
         match = world.getRecipeManager().getFirstMatch(CookingFireLooseRatioRecipe.Type.INSTANCE, inventory, world);
         if (match.isPresent()) {
             return match.get();

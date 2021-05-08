@@ -4,22 +4,5 @@
     "item": "minecraft:beef"
   },
   "output": "minecraft:cooked_beef",
-  "cookTime": 100,
-  "outputInfo": {
-    "1": {
-      "count": 1
-    },
-    "2": {
-      "count": 2
-    },
-    "3": {
-      "count": 3
-    },
-    "4": {
-      "count": 4
-    },
-    "5": {
-      "count": 5
-    }
-  }
+  "cookTime": 100
 }

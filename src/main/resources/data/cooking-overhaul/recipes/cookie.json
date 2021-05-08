@@ -13,10 +13,5 @@
     0.66666
   ],
   "output": "minecraft:cookie",
-  "cookTime": 100,
-  "outputInfo": {
-    "3": {
-      "count": 16
-    }
-  }
+  "cookTime": 100
 }

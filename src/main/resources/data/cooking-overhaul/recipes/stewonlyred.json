@@ -20,16 +20,5 @@
   ],
   "maxErrorRatio": 0.25,
   "output": "minecraft:mushroom_stew",
-  "cookTime": 100,
-  "outputInfo": {
-    "3": {
-      "count": 1
-    },
-    "4": {
-      "count": 1
-    },
-    "5": {
-      "count": 1
-    }
-  }
+  "cookTime": 100
 }
